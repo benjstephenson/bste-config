@@ -5,3 +5,5 @@ git
 mercurial
 perl
 python
+openjdk-7-jre
+openjdk-7-jdk
