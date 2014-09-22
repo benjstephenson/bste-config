@@ -99,6 +99,8 @@ set path+=$PWD/**
 
 " PowerBar is better
 "set statusline=\[FILE=%F%m%R\]\ \[TYPE=%Y\]\ \[POS=ln%l\ col%c\ %P\]\ \[LINES=%L\]
+let g:Powerline_colorscheme="solarized16"
+
 
 " Auto remove trailing whitespace on file save
 "autocmd BufWritePre * :%s/\s\+$//e
