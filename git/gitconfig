@@ -1,0 +1,21 @@
+[user]
+	name = Ben Stephenson
+	email = ben.j.stephenson@news.co.uk
+	logallrefupdates = true
+[credential]
+	helper = store
+[help]
+	autocorrect = 5
+[branch]
+	autosetuprebase = never
+[alias]
+  llog = log --decorate --graph
+[default]
+	editor = vim
+[core]
+	editor = vim
+	autocrlf = input
+[push]
+	default = current
+[color]
+	ui = auto
