@@ -31,7 +31,6 @@ zstyle ':prezto:load' pmodule \
   'environment'         \
 	'git'                 \
   'history'             \
-	'node'                \
   'prompt'              \
   'spectrum'            \
 	'syntax-highlighting' \
