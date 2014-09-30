@@ -29,7 +29,7 @@ endif
 "=================================================================
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/Repos/Vundle.vim
 call vundle#begin()
 
 Plugin 'FuzzyFinder'
