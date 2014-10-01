@@ -2,7 +2,7 @@
 pmodload 'helper'
 
 CURRENT_BG='NONE'
-SEGMENT_SEPARATOR='⮀'
+SEGMENT_SEPARATOR="\ue0b0"
 
 
 # Begin a segment
@@ -12,11 +12,13 @@ prompt_segment() {
   local bg fg
   [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
   [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
+
   if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
     echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
   else
     echo -n "%{$bg%}%{$fg%} "
   fi
+
   CURRENT_BG=$1
   [[ -n $3 ]] && print -Pn $3
 }
@@ -33,11 +35,14 @@ prompt_end() {
 }
 
 function build_prompt {
-  prompt_segment black default '%(1?;%{%F{red}%}✘ ;)%(!;%{%F{yellow}%}⚡ ;)%(1j;%{%F{cyan}%}%j⚙ ;)%{%F{blue}%}%n%{%F{red}%}@%{%F{green}%}%M'
-  prompt_segment blue black '%2~'
+  prompt_segment black default '%{%F{blue}%}%n%{%F{red}%}@%{%F{green}%}%M'
+  #prompt_segment black default '%(1?;%{%F{red}%}✘ ;)%(!;%{%F{yellow}%}⚡ ;)%(1j;%{%F{cyan}%}%j⚙ ;)%{%F{blue}%}%n%{%F{red}%}@%{%F{green}%}%M'
+  prompt_segment blue black '%~'
+
   if $git_status; then
     prompt_segment green black '${(e)git_info[prompt]}${git_info[status]}'
   fi
+
   prompt_end
 }
 
@@ -90,14 +95,14 @@ function prompt_paradox_setup {
   add-zsh-hook precmd prompt_paradox_precmd
 
   zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
-  zstyle ':prezto:module:editor:info:keymap:primary' format '%B%F{blue}❯%f%b'
+  zstyle ':prezto:module:editor:info:keymap:primary' format '%B%F{red}❯%f%b%B%F{yellow}❯%f%b%B%F{blue}❯%f%b'
   zstyle ':prezto:module:editor:info:keymap:primary:overwrite' format '%F{red}♺%f'
   zstyle ':prezto:module:editor:info:keymap:alternate' format '%B%F{red}❮%f%b'
   zstyle ':prezto:module:git:info:action' format '! %s'
   zstyle ':prezto:module:git:info:added' format '✚'
   zstyle ':prezto:module:git:info:ahead' format '⬆'
   zstyle ':prezto:module:git:info:behind' format '⬇'
-  zstyle ':prezto:module:git:info:branch' format '⭠ %b'
+  zstyle ':prezto:module:git:info:branch' format "\ue0a0 %b"
   zstyle ':prezto:module:git:info:commit' format '➦ %.7c'
   zstyle ':prezto:module:git:info:deleted' format '✖'
   zstyle ':prezto:module:git:info:modified' format '✱'
@@ -111,9 +116,9 @@ function prompt_paradox_setup {
     'status' ' %A%B%S%a%d%m%r%U%u'
 
   # Define prompts.
-  PROMPT='
-%{%f%b%k%}$(build_prompt)
- ${editor_info[keymap]} '
+  PROMPT='%{%f%b%k%}$(build_prompt)
+${editor_info[keymap]} '
+
   RPROMPT='[%D{%L:%M:%S %p}]'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
