@@ -4,6 +4,7 @@ solarized="https://github.com/altercation/solarized.git"
 gnome-solarized="https://github.com/Anthony25/gnome-terminal-colors-solarized.git"
 powerline-solarized="https://github.com/pearofducks/solarized-powerlines.git"
 vundle="https://github.com/gmarik/Vundle.vim.git"
+eclim="https://github.com/ervandew/eclim.git"
 
 [mercurial]
 vim="https://vim.googlecode.com/hg/"

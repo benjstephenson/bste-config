@@ -32,6 +32,8 @@ filetype off
 set rtp+=~/Repos/Vundle.vim
 call vundle#begin()
 
+Plugin 'dkprice/vim-easygrep'
+"Plugin 'ejholmes/vim-forcedotcom'
 Plugin 'FuzzyFinder'
 Plugin 'gmarik/vundle'
 Plugin 'godlygeek/tabular'
@@ -39,14 +41,15 @@ Plugin 'L9'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'majutsushi/tagbar'
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'pearofducks/solarized-powerlines'
+Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'Valloric/MatchTagAlways'
+"Plugin 'vim-scripts/groovy.vim'
 Plugin 'wesleyche/SrcExpl'
-Plugin 'scrooloose/nerdtree'
-Plugin 'ejholmes/vim-forcedotcom'
-Plugin 'vim-scripts/groovy.vim'
-Plugin 'pearofducks/solarized-powerlines'
+Plugin 'wincent/command-t'
 
 " SnipMate and dependencies
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -54,7 +57,6 @@ Plugin 'tomtom/tlib_vim'
 "Plugin 'garbas/snipmate.vim'
 Plugin 'msanders/snipmate.vim'
 
-Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 
@@ -183,6 +185,7 @@ let g:mta_filetypes = {
     \ 'xml'   : 1,
     \ 'jinja' : 1,
 		\ 'js'    : 1,
+		\ 'groovy'    : 1,
     \}
 
 
@@ -212,7 +215,6 @@ function! g:UltiSnips_Complete()
     return ""
 endfunction
 
-"exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 
 "==================================================================
 "Fold Setup
@@ -223,7 +225,6 @@ set foldmethod=marker
 set foldcolumn=2          "Set the width of the lh column which shows fold marks
 set foldminlines=5        "Set the min number of lines to make a fold
 set foldopen-=search      "Don't open folds when searching
-
 
 "If we've made some nice folds, save them when we leave and reload them when
 "we comeback, but not if it's a ro file or we're in diff mode
@@ -294,4 +295,3 @@ command! -nargs=* Ox %!xxd
 command! -nargs=* Nox %!xxd -r
 
 noremap <F2> "=strftime("%c")<CR>p
-
