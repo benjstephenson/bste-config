@@ -9,7 +9,8 @@
 [branch]
 	autosetuprebase = never
 [alias]
-  llog = log --decorate --graph
+	llog = log --decorate --graph
+	restore-perms = git diff -p -R | grep -E "^(diff|(old|new) mode)" | git apply
 [default]
 	editor = vim
 [core]
