@@ -101,8 +101,14 @@ let g:Powerline_colorscheme="solarized16"
 " Bundle Settings
 "=================================================================
 
-" Complete settings
+" Complete settings - Set Eclim to use YCM for semantic completion
 let g:EclimCompletionMethod = 'omnifunc'
+
+"Tell YCM to fall back to an available engine based on filetype if a native
+"YCM one isn't available.
+autocmd Filetype * runtime! autoload/eclim/<amatch>/complete.vim
+    \ | let s:cfunc = 'eclim#'.expand('<amatch>').'#complete#CodeComplete'
+    \ | if exists('*'.s:cfunc) | let &l:omnifunc=s:cfunc | endif
 
 "SrcExpl
 let g:SrcExpl_pluginList = [
@@ -112,32 +118,33 @@ let g:SrcExpl_pluginList = [
 
 
 "Tagbar
-let g:tagbar_type_scala = {
-    \ 'ctagstype' : 'Scala',
-    \ 'kinds'     : [
-        \ 'p:packages:1',
-        \ 'V:values',
-        \ 'v:variables',
-        \ 'T:types',
-        \ 't:traits',
-        \ 'o:objects',
-        \ 'a:aclasses',
-        \ 'c:classes',
-        \ 'r:cclasses',
-        \ 'm:methods'
-    \ ]
-\ }
+"let g:tagbar_type_scala = {
+"    \ 'ctagstype' : 'Scala',
+"    \ 'kinds'     : [
+"        \ 'p:packages:1',
+"        \ 'V:values',
+"        \ 'v:variables',
+"        \ 'T:types',
+"        \ 't:traits',
+"        \ 'o:objects',
+"        \ 'a:aclasses',
+"        \ 'c:classes',
+"        \ 'r:cclasses',
+"        \ 'm:methods'
+"    \ ]
+"\ }
 
-let g:tagbar_type_groovy = {
-    \ 'ctagstype' : 'groovy',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'c:class',
-        \ 'i:interface',
-        \ 'f:function',
-        \ 'v:variables',
-    \ ]
-\ }
+" tagbar support for groovy
+ let g:tagbar_type_groovy = {
+ \ 'ctagstype' : 'groovy',
+ \ 'kinds' : [
+ \ 'p:package',
+ \ 'c:class',
+ \ 'i:interface',
+ \ 'f:function',
+ \ 'v:variables',
+ \ ]
+ \ }
 
 "let type_scala = {}
 "let type_scala.ctagstype = 'Scala'
