@@ -96,7 +96,7 @@ let g:Powerline_colorscheme="solarized16"
 
 
 " Auto remove trailing whitespace on file save
-"autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
 "=================================================================
 " Bundle Settings
 "=================================================================
@@ -218,6 +218,10 @@ let g:UltiSnipsExpandTrigger = '<c-j>'
 let g:UltiSnipsJumpForwardTrigger = '<c-l>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 "let g:UltiSnipsListSnippets = '<c-m>'
+
+
+" Command-T
+set wildignore+=*.class,target/**
 
 "==================================================================
 "Fold Setup
