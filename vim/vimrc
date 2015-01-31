@@ -48,7 +48,7 @@ Plugin 'wesleyche/SrcExpl'
 Plugin 'wincent/command-t'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-
+Plugin 'altercation/vim-colors-solarized.git'
 call vundle#end()
 
 "=================================================================
