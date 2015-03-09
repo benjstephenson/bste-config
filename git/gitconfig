@@ -11,6 +11,7 @@
 [alias]
 	llog = log --decorate --graph
 	restore-perms = diff -p -R | grep -E "^(diff|(old|new) mode)" | git apply
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [default]
 	editor = vim
 [core]
