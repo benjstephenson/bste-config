@@ -16,7 +16,7 @@
 	editor = vim
 [core]
 	editor = vim
-	autocrlf = input
+	autocrlf = false
 [push]
 	default = current
 [color]
