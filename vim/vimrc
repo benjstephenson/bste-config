@@ -172,7 +172,7 @@ endfunction
 au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 
 " UltiSnips
-let g:UltiSnipsExpandTrigger = '<c-j>'
+let g:UltiSnipsExpandTrigger = '<c-space>'
 let g:UltiSnipsJumpForwardTrigger = '<c-l>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 "let g:UltiSnipsListSnippets = '<c-m>'
@@ -250,6 +250,8 @@ nmap [1;5B <C-W>j
 nmap [1;5A <C-W>k
 " Key=<C-RightArrow>
 nmap [1;5C <C-W>l
+
+map <Leader>o <c-w>o
 
 "Opens file under cursor in new window, if in $PATH
 "Key=<Gf>
