@@ -178,6 +178,12 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 "let g:UltiSnipsListSnippets = '<c-m>'
 
 
+" Rainbow Parenthesis highlighting
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
 " Command-T
 set wildignore+=*.class,target/**
 
