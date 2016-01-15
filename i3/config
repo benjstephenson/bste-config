@@ -140,6 +140,17 @@ mode "$mode_system" {
 }
 bindsym $mod+Q mode "$mode_system"
 
+# Multimedia control with MPC/MPD
+bindsym XF86AudioPlay exec --no-startup-id /usr/bin/mpc toggle
+bindsym XF86AudioNext exec --no-startup-id /usr/bin/mpc next
+bindsym XF86AudioPrev exec --no-startup-id /usr/bin/mpc prev
+
+# Sound control with Alsa
+bindsym XF86AudioRaiseVolume exec --no-startup-id "/usr/bin/amixer -c1 set Headset,1 5dB+"
+bindsym XF86AudioLowerVolume exec --no-startup-id "/usr/bin/amixer -c1 set Headset,1 5dB-"
+bindsym XF86AudioMute exec --no-startup-id "/usr/bin/amixer -c1 set Headset,1 toggle"
+
+
 # Colours
 set $black	#002B36
 set $white	#839496
