@@ -30,40 +30,45 @@ endif
 set nocompatible
 filetype off
 set rtp+=~/Repos/Vundle.vim
-call vundle#begin()
+call vundle#begin("/home/bste/.config/nvim/bundle")
 
+Plugin 'airblade/vim-gitgutter'
+Plugin 'altercation/vim-colors-solarized.git'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'drn/zoomwin-vim'
+Plugin 'ervandew/supertab'
 Plugin 'gmarik/vundle'
 Plugin 'godlygeek/tabular'
+Plugin 'honza/vim-snippets'
+Plugin 'jnurmine/Zenburn'
 Plugin 'L9'
-Plugin 'Lokaltog/vim-powerline'
+"Plugin 'Lokaltog/vim-powerline'
 Plugin 'majutsushi/tagbar'
-Plugin 'pearofducks/solarized-powerlines'
+Plugin 'myusuf3/numbers.vim'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'oblitum/rainbow'
+"Plugin 'pearofducks/solarized-powerlines'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+Plugin 'SirVer/ultisnips'
+Plugin 'euclio/vim-markdown-composer'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'Valloric/MatchTagAlways'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-airline/vim-airline'
 Plugin 'vim-scripts/FuzzyFinder'
-Plugin 'ctrlpvim/ctrlp.vim'
-"Plugin 'wincent/command-t'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'altercation/vim-colors-solarized.git'
-Plugin 'jnurmine/Zenburn'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'drn/zoomwin-vim'
-Plugin 'ervandew/supertab'
-Plugin 'myusuf3/numbers.vim'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'oblitum/rainbow'
+Plugin 'wincent/command-t'
+Plugin 'dag/vim-fish'
 call vundle#end()
 
 "=================================================================
 "General Options
 "=================================================================
 "Set this first as some other features depend on it.
-filetype plugin on
+filetype indent plugin on
 
 set nocp
 
@@ -85,7 +90,7 @@ set shiftwidth=2
 
 syn on
 set background=dark
-colorscheme solarized
+colorscheme jellybeans
 
 " Usig=ng netrw over NERDTree
 let g:netrw_browse_split=4 "Open files in a last buffer when exploring
@@ -155,12 +160,48 @@ set wildignore+=*.class,target/**
 " columns
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_guide_size = 2
+let g:indent_guides_enable_on_vim_startup = 1
 
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black ctermfg=red
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=8 ctermfg=12
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black ctermfg=red
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=8 ctermfg=12
 
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_nr_type = 1 "show tab number in tabbar
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline_powerline_fonts = 1
+"let g:airline_left_sep='❯'
+"let g:airline_right_sep='❮'
+
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
 "==================================================================
 "Fold Setup
 "==================================================================
@@ -249,3 +290,6 @@ au FileType qf call AdjustWindowHeight(3, 10)
 function! AdjustWindowHeight(minheight, maxheight)
   exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
 endfunction
+
+"Toggle NERDTree
+noremap <silent> <Leader>nt :NERDTreeToggle<CR>
