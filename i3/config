@@ -161,7 +161,7 @@ mode "$mode_system" {
     bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -171,24 +171,51 @@ mode "$mode_system" {
 bindsym $mod+Control+l mode "$mode_system"
 
 # status bar
+#bar {
+#  position top
+#  status_command i3status -c ~/.config/i3/i3status.conf | ~/.config/i3/scripts/i3status-wrapper.py
+#  #i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh
+#  # status_command i3status -c ~/.i3/i3status.conf
+#  # status_command py3status -c ~/.i3/i3status.conf
+#  # status_command ~/.i3/conky.sh
+#  workspace_buttons yes
+#  colors {
+#    background #073642
+#    statusline #839496
+#    separator #b58900
+#    # class border backgrd text
+#    focused_workspace #cb4b16 #cb4b16 #ffffff
+#    active_workspace  #cb4b16 #cb4b16 #ffffff
+#    inactive_workspace #252525 #252525 #6b6b6b
+#    urgent_workspace #252525 #252525 #c7a551
+#  }
+#}
+
 bar {
-  position top
-  status_command i3status -c ~/.config/i3/i3status.conf | ~/.config/i3/scripts/i3status-wrapper.py
-  #i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh
-  # status_command i3status -c ~/.i3/i3status.conf
-  # status_command py3status -c ~/.i3/i3status.conf
-  # status_command ~/.i3/conky.sh
-  workspace_buttons yes
-  colors {
-    background #073642
-    statusline #839496
-    separator #b58900
-    # class border backgrd text
-    focused_workspace #cb4b16 #cb4b16 #ffffff
-    active_workspace  #cb4b16 #cb4b16 #ffffff
-    inactive_workspace #252525 #252525 #6b6b6b
-    urgent_workspace #252525 #252525 #c7a551
-  }
+	status_command $HOME/.config/i3/scripts/i3-conky.sh
+	position top
+	font xft: terminus 9
+  height 35
+  # Enforce window ordering, but don't show the extra numbers
+  strip_workspace_numbers yes
+
+  ## More fonts to try out!
+	# font xft: terminus 9
+	# font xft: profont 11
+	# font xft: tewi 11
+	# font xft: bitocra, siji 11
+	# font xft: neep 11
+	# font xft: couriernew 10
+
+colors {
+        background #171717
+        statusline #171717
+########################## border # back ## text ##################################################
+        focused_workspace  #afd700 #afd700 #005f00
+        active_workspace   #333333 #5f676a #ffffff
+        urgent_workspace   #2f343a #900000 #ffffff
+        inactive_workspace #afd700 #171717 #9c9c9c
+    }
 }
 
 # class border backgr text separator
