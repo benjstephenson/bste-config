@@ -30,9 +30,9 @@ xftfont tamsyn:size=8
 # Stuff after 'TEXT' will be formatted on screen
 
 TEXT
-
-	## Current window
-	[{"full_text" : "${exec ~/.config/i3/scripts/get_focused_win_title.sh}", "color" : "\#eca4c4"},
+  [
+  ## Current window
+  {"full_text" : "${exec ~/.config/i3/scripts/get_focused_win_title.sh}", "color" : "\#eca4c4"},
 
   ## CPU Info
   { "full_text" : "⚅ CPU: ${cpu}% " , "color" : "\#e33a6e" },
@@ -44,7 +44,7 @@ TEXT
   { "full_text" : " ${fs_free /} - [${fs_bar}]" , "color" : "\#80d9d8"},
 
   ## Battery Percentage
-  { "full_text":": ${battery_short BAT0}%", "color" : "\#DC322F" },
+  { "full_text":"${if_match ${battery_short BAT0} == ""}${else} :${battery_short BAT0}% ${endif}", "color" : "\#DC322F" },
 
   ## Weather Info
   #{ "full_text" : " *${exec weather --headers="Sky conditions" -q | awk '/Sky conditions/ {print $3 " " $4}'}*", "color" : "\#eca4c4"},
@@ -52,8 +52,8 @@ TEXT
   ## Temperature
   { "full_text" : "${acpitemp}°C", "color" : "\#ffaf5f"},
 
-	## Volume
-  { "full_text" : " ${mixerbar} ${mixer}%" , "color" : "\#C89BDC"},
+  ## Volume
+  { "full_text" : " ${exec ~/.config/i3/scripts/volumeControl.sh get}%" , "color" : "\#C89BDC"},
 
   ## Date
   { "full_text" : "  ${time %Y %B %d}" , "color" : "\#778baf", "separator" : false},
