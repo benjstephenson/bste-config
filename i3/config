@@ -14,10 +14,10 @@
 # Special mod key
 set $mod Mod4
 
-exec compton -b
+exec compton -b -config ~/.config/compton/compton
 
 exec ~/.screenlayout/workMonitors.sh
-exec ~/.config/i3/scripts/setHidpi.sh
+exec ~/bin/setHidpi.sh
 
 #exec /usr/lib/python3.5/site-packages/powerline/bindings/lemonbar/powerline-lemonbar.py --i3 --height=24 --bar-command=lemonbar
 
@@ -183,10 +183,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Start a terminal
-bindsym $mod+Return exec terminator
+bindsym $mod+Return exec urxvt
 
 # Start dmenu (a program launcher)
-bindsym $mod+d exec j4-dmenu-desktop
+bindsym $mod+d exec ~/bin/myrofi
+#bindsym $mod+d exec j4-dmenu-desktop
 #bindsym $mod+d exec rofi -show run
 
 # Reload the configuration file
@@ -196,9 +197,9 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # Media keys
-bindsym XF86AudioPause exec ~/.config/i3/scripts/spotifyController.sh "play"
-bindsym XF86AudioNext exec ~/.config/i3/scripts/spotifyController.sh "next"
-bindsym XF86AudioPrev exec ~/.config/i3/scripts/spotifyController.sh "prev"
+bindsym XF86AudioPause exec ~/bin/spotifyController.sh "play"
+bindsym XF86AudioNext exec ~/bin/spotifyController.sh "next"
+bindsym XF86AudioPrev exec ~/bin/spotifyController.sh "prev"
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +1% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -1% #decrease sound volume
@@ -206,7 +207,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute s
 
 # Logout, reboot, shutdown
 #set $Locker i3lock -i ~/Pictures/tardis_van_gogh.png && sleep 1
-set $Locker ~/.config/i3/scripts/lockscreen.sh
+set $Locker ~/bin/lockscreen.sh
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
@@ -248,29 +249,6 @@ bindsym $mod+Control+l mode "$mode_system"
 bar {
   i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh
 #	status_command $HOME/.config/i3/scripts/i3-conky.sh
-#	position top
-#	font xft: terminus 9
-#  height 35
-#  # Enforce window ordering, but don't show the extra numbers
-#  strip_workspace_numbers yes
-#
-#  ## More fonts to try out!
-#	# font xft: terminus 9
-#	# font xft: profont 11
-#	# font xft: tewi 11
-#	# font xft: bitocra, siji 11
-#	# font xft: neep 11
-#	# font xft: couriernew 10
-#
-#colors {
-#        background #171717
-#        statusline #171717
-########################### border # back ## text ##################################################
-#        focused_workspace  #afd700 #afd700 #005f00
-#        active_workspace   #333333 #5f676a #ffffff
-#        urgent_workspace   #2f343a #900000 #ffffff
-#        inactive_workspace #afd700 #171717 #9c9c9c
-#    }
 }
 
 # Autostarts
