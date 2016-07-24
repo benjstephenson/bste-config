@@ -1,3 +1,0 @@
-deb http://dl.google.com/linux/chrome/deb/ stable main
-deb http://ppa.launchpad.net/neovim-ppa/unstable/ubuntu ${RELEASE} main
-deb https://dl.bintray.com/sbt/debian /

@@ -1,0 +1,71 @@
+Xft.dpi: 196
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+
+*font: xft:Liberation Mono for Powerline:style=Bold:size=10
+*scrollBar: false
+*letterSpace: -1
+
+! --- XRES SRC
+*foreground:    #ebdbb2
+*background:    #282828
+
+!black
+*color0:    #1d2021
+*color8:    #665c54
+!red
+*color1:    #cc241d
+*color9:    #fb4934
+!green
+*color2:    #98971a
+*color10:   #b8bb26
+!yellow
+*color3:    #d79921
+*color11:   #fabd2f
+!blue
+*color4:    #458588
+*color12:   #83a598
+!magenta
+*color5:    #b16286
+*color13:   #d3869b
+!cyan
+*color6:    #689d6a
+*color14:   #8ec07c
+!white
+*color7:    #dbae93
+*color15:   #fbf1c7
+
+! Rofi colors setup
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+! Use extended color scheme
+rofi.color-enabled:                  true
+! Color scheme for normal row
+rofi.color-normal:                   argb:00000000,  #D8DEE9 , argb:00000000,  #FFAF00 ,  #1B2B34
+! Color scheme for urgent row
+rofi.color-urgent:                   argb:00000000,  #F99157 , argb:00000000,  #F99157 ,  #1B2B34
+! Color scheme for active row
+rofi.color-active:                   argb:00000000,  #6699CC , argb:00000000,  #6699CC ,  #1B2B34
+! Color scheme window
+rofi.color-window:                   argb:ee222222,  #91E22E ,  #91E22E
+! Separator style (none, dash, solid)
+rofi.separator-style: dash
+! rofi.opacity: 85
+! rofi.width: 1924
+rofi.lines: 7
+rofi.columns: 4
+rofi.font:DejaVu Sans Mono 12
+rofi.bw: 0
+rofi.location: 6
+rofi.padding: 2
+
+! Keybindings
+rofi.key-window: mod4+Tab
+rofi.key-run: mod4+p
+rofi.key-ssh: mod1+F3
