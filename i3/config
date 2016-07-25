@@ -22,17 +22,16 @@ exec ~/bin/setHidpi.sh
 #exec /usr/lib/python3.5/site-packages/powerline/bindings/lemonbar/powerline-lemonbar.py --i3 --height=24 --bar-command=lemonbar
 
 # Workspaces
-set $ws1 0 sh
-set $ws2 1 web
-set $ws2 1 sh
-set $ws3 2 app
-set $ws4 3 mail
-set $ws5 4 sh2
-set $ws6 5 sh3
-set $ws7 6 sh4
-set $ws8 7 sh5
-set $ws9 8 sh6
-set $ws10 9 game
+set $ws1 1 sh
+set $ws2 2 web
+set $ws3 3 app
+set $ws4 4 mail
+set $ws5 5 sh2
+set $ws6 6 sh3
+set $ws7 7 sh4
+set $ws8 8 sh5
+set $ws9 9 sh6
+set $ws10 10 game
 
 bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '
 
@@ -81,25 +80,25 @@ gaps outer 0
 
 # Xresource-based. Do not edit manually, will be overwritten by script
 # --- APPLY XRES BEGIN
-set $c_red_l #fb4934
-set $c_blue_l #83a598
-set $c_blue_d #458588
-set $c_magenta_d #b16286
-set $c_black_d #1d2021
-set $c_cyan_l #8ec07c
-set $c_magenta_l #d3869b
-set $c_yellow_l #fabd2f
-set $c_red_d #cc241d
-set $c_background #282828
-set $c_cyan_d #689d6a
-set $c_green_l #b8bb26
-set $c_foreground #ebdbb2
-set $c_white_d #dbae93
-set $c_green_d #98971a
-set $c_yellow_d #d79921
-set $c_cursor #fff000
-set $c_white_l #fbf1c7
-set $c_black_l #665c54
+set $c_foreground #839496
+set $c_red_l #cb4b16
+set $c_background #002b36
+set $c_red_d #dc322f
+set $c_green_d #859900
+set $c_white_d #eee8d5
+set $c_cursor #586e75
+set $c_blue_l #839496
+set $c_magenta_l #6c71c4
+set $c_cyan_d #2aa198
+set $c_white_l #fdf6e3
+set $c_green_l #586e75
+set $c_yellow_d #b58900
+set $c_blue_d #268bd2
+set $c_cyan_l #93a1a1
+set $c_yellow_l #657b83
+set $c_black_d #073642
+set $c_black_l #002b36
+set $c_magenta_d #d33682
 # --- APPLY XRES END
 
 #class                  background?   border        text          split
@@ -158,26 +157,26 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+  # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym ograve resize grow width 10 px or 10 ppt
+  # Pressing left will shrink the window’s width.
+  # Pressing right will grow the window’s width.
+  # Pressing up will shrink the window’s height.
+  # Pressing down will grow the window’s height.
+  bindsym j resize shrink width 10 px or 10 ppt
+  bindsym k resize grow height 10 px or 10 ppt
+  bindsym l resize shrink height 10 px or 10 ppt
+  bindsym ograve resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+  # same bindings, but for the arrow keys
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -188,7 +187,7 @@ bindsym $mod+Return exec urxvt
 # Start dmenu (a program launcher)
 bindsym $mod+d exec ~/bin/myrofi
 #bindsym $mod+d exec j4-dmenu-desktop
-#bindsym $mod+d exec rofi -show run
+#bindsym $mod+d exec rofi
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
@@ -201,9 +200,9 @@ bindsym XF86AudioPause exec ~/bin/spotifyController.sh "play"
 bindsym XF86AudioNext exec ~/bin/spotifyController.sh "next"
 bindsym XF86AudioPrev exec ~/bin/spotifyController.sh "prev"
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +1% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -1% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +1% && pkill -RTMIN+1 i3blocks  #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -1% && pkill -RTMIN+1 i3blocks #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle && pkill -RTMIN+1 i3blocks # mute sound
 
 # Logout, reboot, shutdown
 #set $Locker i3lock -i ~/Pictures/tardis_van_gogh.png && sleep 1
@@ -247,14 +246,17 @@ bindsym $mod+Control+l mode "$mode_system"
 #}
 
 bar {
-  i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh
 #	status_command $HOME/.config/i3/scripts/i3-conky.sh
+#  i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh
+  status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	position top
+	workspace_buttons yes
 }
 
 # Autostarts
 exec --no-startup-id unclutter -idle 2
-exec --no-startup-id dunst -config ~/.config/i3/dunstrc
-exec --no-startup-id feh --bg-scale ~/Pictures/NGC1309Jeff_full.jpg
+#exec --no-startup-id dunst -config ~/.config/i3/dunstrc
+exec --no-startup-id feh --bg-scale ~/Pictures/cartoonConsole.jpg
 exec --no-startup-id devmon
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet

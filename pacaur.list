@@ -1,8 +1,10 @@
-xorg-xfd
+alsa-utils
+feh
+pulseaudio-ctl
+scrot
 siji-git
 tamzen-font-git
+toilet
 ttf-fonts-awesome
 ttf-fonts-icons
-scrot
-feh
-
+xorg-xfd

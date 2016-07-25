@@ -64,16 +64,16 @@ while read -r line ; do
       vol="%{B- F${vol_frg} T2}  ${vol_ico} %{T1} ${vol_txt}%{F- B-}"
       ;;
 
-    GMA*)
-      # Gmail
-      gmail="${line#???}"
-      if [ "${gmail}" != "0" ]; then
-        mail_cback=${color_mail}; mail_cicon=${color_back}; mail_cfore=${color_back}
-      else
-        mail_cback=${color_sec_b1}; mail_cicon=${color_icon}; mail_cfore=${color_fore}
-      fi
-      gmail="%{F${mail_cback}}${sep_left}%{F${mail_cicon} B${mail_cback}} %{T2}${icon_mail}%{F${mail_cfore} T1} ${gmail}"
-      ;;
+    #GMA*)
+    #  # Gmail
+    #  gmail="${line#???}"
+    #  if [ "${gmail}" != "0" ]; then
+    #    mail_cback=${color_mail}; mail_cicon=${color_back}; mail_cfore=${color_back}
+    #  else
+    #    mail_cback=${color_sec_b1}; mail_cicon=${color_icon}; mail_cfore=${color_fore}
+    #  fi
+    #  gmail="%{F${mail_cback}}${sep_left}%{F${mail_cicon} B${mail_cback}} %{T2}${icon_mail}%{F${mail_cfore} T1} ${gmail}"
+    #  ;;
 
     MPD*)
       # Music
@@ -135,7 +135,7 @@ while read -r line ; do
         shift
       done
       ;;
-      
+
     WIN*)
       # window title
       title=$(xprop -id ${line#???} | awk '/_NET_WM_NAME/{$1=$2="";print}' | cut -d'"' -f2)
@@ -145,7 +145,7 @@ while read -r line ; do
     SID*)
       ssid="%{F${color_fgdark} T2}  ${icon_ssid}  %{T1}${line#???}"
       ;;
-      
+
   esac
 
   # And finally, output
