@@ -1,23 +1,23 @@
 # --- APPLY XRES BEGIN
-c_red_l="CC6666"
-c_green_l="BDE077"
-c_cyan_d="72AD8C"
-c_cursor="fff000"
-c_yellow_d="FEA63C"
-c_green_d="B7CE42"
-c_yellow_l="FFE863"
-c_foreground="ddeedd"
-c_blue_l="AACCBB"
-c_magenta_l="ff5879"
-c_black_d="25374A"
-c_background="131D24"
-c_magenta_d="F26B9E"
-c_black_l="3A526B"
-c_blue_d="66AABB"
-c_white_l="FFFFFF"
-c_cyan_l="9FE3BC"
-c_red_d="BD4A4A"
-c_white_d="DDEEDD"
+c_foreground="839496"
+c_red_l="cb4b16"
+c_background="002b36"
+c_red_d="dc322f"
+c_green_d="859900"
+c_white_d="eee8d5"
+c_cursor="586e75"
+c_blue_l="839496"
+c_magenta_l="6c71c4"
+c_cyan_d="2aa198"
+c_white_l="fdf6e3"
+c_green_l="586e75"
+c_yellow_d="b58900"
+c_blue_d="268bd2"
+c_cyan_l="93a1a1"
+c_yellow_l="657b83"
+c_black_d="073642"
+c_black_l="002b36"
+c_magenta_d="d33682"
 # --- APPLY XRES END
 
 tod=$(timeofday)
@@ -56,4 +56,6 @@ case $tod in
 esac
 
 width=`myres | cut -d 'x' -f 1`
-rofi -show run -width $width -fg "#$fg" -bg "#$bg" -hlbg "#$fg" -hlfg "#$bg" -bc "#$c_background" -location 0 -lines 8 -bw 0 -font "Inconsolata Bold 16" -padding 400 -separator-style none -opacity 85
+echo $width
+echo rofi -show run -width $width -fg "#$fg" -bg "#$bg" -hlbg "#$fg" -hlfg "#$bg" -bc "#$c_background" -location 0 -lines 8 -bw 0 -font "Inconsolata Bold 16" -padding 400 -separator-style none -opacity 85
+rofi -show run -fg "#$fg" -bg "#$bg" -hlbg "#$fg" -hlfg "#$bg" -bc "#$c_background" -location 0 -lines 8 -bw 0 -font "Inconsolata Bold 16" -padding 400 -separator-style none -opacity 85

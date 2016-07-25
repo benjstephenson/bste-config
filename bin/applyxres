@@ -69,16 +69,16 @@ def replace_in_file(fname, replacement, begin="# --- APPLY XRES BEGIN", end="# -
   f = open(fname, "r")
   lines = f.readlines()
   idx = sidx = eidx = 0
-  
+
   for l in lines:
     if l == begin+"\n":
       sidx = idx + 1
     elif l == end+"\n":
       eidx = idx - 1
     idx += 1
-  
+
   f.close()
-  
+
   if not begin:
     print("Error: "+fname+": could not find beginning line");
   elif not end:
@@ -87,10 +87,10 @@ def replace_in_file(fname, replacement, begin="# --- APPLY XRES BEGIN", end="# -
     while eidx >= sidx:
       lines.pop(eidx)
       eidx -= 1
-  
+
     lines.insert(sidx, replacement+"\n")
-    
-    
+
+
     f = open(fname, "w")
     f.write("".join(lines))
     f.close()
@@ -104,9 +104,9 @@ def hex_lighten(hexvalue, n):
      out += "0"
   return out
 
-### ------------------------------------------------------------------------- 
+### -------------------------------------------------------------------------
 ### ------------------------- Apply colors to files -------------------------
-### ------------------------------------------------------------------------- 
+### -------------------------------------------------------------------------
 
 # 1. i3 configuration file
 repl = []
@@ -115,23 +115,23 @@ for k in colors:
   repl.append("set $"+k+" #"+colors[k])
 
 repl = "\n".join(repl)
-replace_in_file(home+"/.i3/config", repl)
+replace_in_file(home+"/.config/i3/config", repl)
 
 # 2. XFCE4 Terminalrc (this is really stupid, oh well)
-arr = []
-
-def double_color(c):
-  return (c[:2]*2)+(c[2:4]*2)+(c[4:6]*2)
-
-for i in range(0,16):
-  c = colors[lookup["color"+str(i)]]
-  c = double_color(c)
-  arr.append("#"+c)
-
-repl = "ColorForeground=#"+double_color(colors['c_foreground'])+"\nColorBackground=#"+double_color(colors['c_background'])+"\nColorCursor=#"+double_color(colors['c_cursor'])+"\n"
-
-repl += "ColorPalette="+(";".join(arr))
-replace_in_file(home+"/.config/xfce4/terminal/terminalrc", repl)
+#arr = []
+#
+#def double_color(c):
+#  return (c[:2]*2)+(c[2:4]*2)+(c[4:6]*2)
+#
+#for i in range(0,16):
+#  c = colors[lookup["color"+str(i)]]
+#  c = double_color(c)
+#  arr.append("#"+c)
+#
+#repl = "ColorForeground=#"+double_color(colors['c_foreground'])+"\nColorBackground=#"+double_color(colors['c_background'])+"\nColorCursor=#"+double_color(colors['c_cursor'])+"\n"
+#
+#repl += "ColorPalette="+(";".join(arr))
+#replace_in_file(home+"/.config/xfce4/terminal/terminalrc", repl)
 
 # 3. i3 Lemonbar configuration
 arr = []
@@ -139,7 +139,7 @@ arr = []
 for k in colors:
   arr.append(k+"=\"#ff"+colors[k]+"\"")
 
-replace_in_file(home+"/.i3/lemonbar/i3_lemonbar_config", "\n".join(arr))
+replace_in_file(home+"/.config/i3/lemonbar/i3_lemonbar_config", "\n".join(arr))
 
 # 4. Powerline colors
 # "white": "c_white_l",
@@ -190,7 +190,7 @@ tint_lookup = {
   "medium": -1 * contrast,
 }
 
-f = open(home+"/pl-conf/colors.json.default", "r")
+f = open(home+"/.config/powerline/colors.json.default", "r")
 src = json.load(f)
 f.close()
 
@@ -203,7 +203,7 @@ for k in plcolors:
         col = hex_lighten(col, tint_lookup[t])
       src['colors'][k] = int(BestMatch(col))
 
-f = open(home+"/pl-conf/colors.json", "w")
+f = open(home+"/.config/powerline/colors.json", "w")
 json.dump(src,f,indent=2)
 f.close()
 
@@ -214,76 +214,76 @@ arr = []
 for k in colors:
   arr.append(k+"=\""+colors[k]+"\"")
 
-replace_in_file(home+"/sbin/myrofi", "\n".join(arr))
+replace_in_file(home+"/bin/myrofi", "\n".join(arr))
 
 # 6. Sublime Text theme
 
-f = open(home+"/.config/sublime-text-3/Packages/Colorsublime-Themes/Xres-Generated.tmTheme", "w")
-template = open(home+"/.config/sublime-text-3/Packages/User/ApplyXres.template", "r")
-
-header = """<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-\t<key>name</key>
-\t<string>APPLYXRES Generated Theme</string>
-\t<key>settings</key>
-\t<array>
-"""
-
-f.write(header)
-
-template_lines = template.readlines()
-plist_pat = re.compile("^(\s*)([a-zA-Z0-9]+)(:)?(?:\s+(.+))?$")
-
-inDict = 0
-def numsp():
-  return "\t"*(inDict+2)
-
-def write_tag(name, value):
-  f.write(numsp()+"<{0}>{1}</{0}>\n".format(name, value))
-
-for line in template_lines:
-  if not line.strip():
-    while inDict > 0:
-      inDict -= 1
-      f.write(numsp()+"</dict>\n")
-    continue
-
-  if inDict == 0:
-    f.write(numsp()+"<dict>\n")
-    inDict = 1
-
-  tkn = plist_pat.findall(line)
-  if len(tkn) and len(tkn[0]) == 4:
-    tkn = tkn[0]
-    write_tag("key", tkn[1])
-    if len(tkn[-1]):
-      value = tkn[-1]
-      if tkn[-1][0] == "$":
-        cname = value[1:]
-        if cname in colors:
-          value = "#"+colors[cname]
-        else:
-          print("Sublime Text template error: color \""+value+"\" not found")
-          value = "#FFF000"
-      write_tag("string", value)
-    elif len(tkn[2]):
-      f.write(numsp()+"<dict>\n")
-      inDict += 1
-  else:
-    print("Error: bad line",line)
-
-while inDict > 0:
-  inDict -= 1
-  f.write(numsp()+"</dict>\n")
-
-footer = """\t</array>
-</dict>
-</plist>
-"""
-
-f.write(footer)
-
-template.close()
-f.close()
+#f = open(home+"/.config/sublime-text-3/Packages/Colorsublime-Themes/Xres-Generated.tmTheme", "w")
+#template = open(home+"/.config/sublime-text-3/Packages/User/ApplyXres.template", "r")
+#
+#header = """<?xml version="1.0" encoding="UTF-8"?>
+#<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+#<plist version="1.0">
+#<dict>
+#\t<key>name</key>
+#\t<string>APPLYXRES Generated Theme</string>
+#\t<key>settings</key>
+#\t<array>
+#"""
+#
+#f.write(header)
+#
+#template_lines = template.readlines()
+#plist_pat = re.compile("^(\s*)([a-zA-Z0-9]+)(:)?(?:\s+(.+))?$")
+#
+#inDict = 0
+#def numsp():
+#  return "\t"*(inDict+2)
+#
+#def write_tag(name, value):
+#  f.write(numsp()+"<{0}>{1}</{0}>\n".format(name, value))
+#
+#for line in template_lines:
+#  if not line.strip():
+#    while inDict > 0:
+#      inDict -= 1
+#      f.write(numsp()+"</dict>\n")
+#    continue
+#
+#  if inDict == 0:
+#    f.write(numsp()+"<dict>\n")
+#    inDict = 1
+#
+#  tkn = plist_pat.findall(line)
+#  if len(tkn) and len(tkn[0]) == 4:
+#    tkn = tkn[0]
+#    write_tag("key", tkn[1])
+#    if len(tkn[-1]):
+#      value = tkn[-1]
+#      if tkn[-1][0] == "$":
+#        cname = value[1:]
+#        if cname in colors:
+#          value = "#"+colors[cname]
+#        else:
+#          print("Sublime Text template error: color \""+value+"\" not found")
+#          value = "#FFF000"
+#      write_tag("string", value)
+#    elif len(tkn[2]):
+#      f.write(numsp()+"<dict>\n")
+#      inDict += 1
+#  else:
+#    print("Error: bad line",line)
+#
+#while inDict > 0:
+#  inDict -= 1
+#  f.write(numsp()+"</dict>\n")
+#
+#footer = """\t</array>
+#</dict>
+#</plist>
+#"""
+#
+#f.write(footer)
+#
+#template.close()
+#f.close()
