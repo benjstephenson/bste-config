@@ -57,5 +57,5 @@ esac
 
 width=`myres | cut -d 'x' -f 1`
 echo $width
-echo rofi -show run -width $width -fg "#$fg" -bg "#$bg" -hlbg "#$fg" -hlfg "#$bg" -bc "#$c_background" -location 0 -lines 8 -bw 0 -font "Inconsolata Bold 16" -padding 400 -separator-style none -opacity 85
-rofi -show run -fg "#$fg" -bg "#$bg" -hlbg "#$fg" -hlfg "#$bg" -bc "#$c_background" -location 0 -lines 8 -bw 0 -font "Inconsolata Bold 16" -padding 400 -separator-style none -opacity 85
+rofi -i -show drun -p "run: " -fg "#$fg" -bg "#$bg" -hlbg "#$fg" -hlfg "#$bg" -bc "#$c_background" -location 0 -lines 8 -bw 0 -font "Inconsolata Bold 16" -padding 20 -separator-style none -opacity 85 -sidebar-mode
+#i3-dmenu-desktop --dmenu=' rofi -i -dmenu -show run -width "$(("$width" / 1))" -fg "#$fg" -bg "#$bg" -hlbg "#$fg" -hlfg "#$bg" -bc "#$c_background" -location 0 -lines 8 -bw 0 -font "Inconsolata Bold 16" -padding 20 -separator-style none -opacity 85 -sidebar-mode'

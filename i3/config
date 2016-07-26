@@ -14,7 +14,7 @@
 # Special mod key
 set $mod Mod4
 
-exec compton -b -config ~/.config/compton/compton
+exec compton -b --config ~/.config/compton/compton
 
 exec ~/.screenlayout/workMonitors.sh
 exec ~/bin/setHidpi.sh
@@ -73,32 +73,32 @@ font pango:DejaVu Sans Mono 10
 floating_modifier $mod
 
 # Windows
-new_window pixel 2
-new_float pixel 2
+new_window pixel 1
+new_float pixel 1
 gaps inner 10
 gaps outer 0
 
 # Xresource-based. Do not edit manually, will be overwritten by script
 # --- APPLY XRES BEGIN
-set $c_foreground #839496
-set $c_red_l #cb4b16
-set $c_background #002b36
-set $c_red_d #dc322f
+set $c_black_d #073642
 set $c_green_d #859900
-set $c_white_d #eee8d5
-set $c_cursor #586e75
-set $c_blue_l #839496
 set $c_magenta_l #6c71c4
-set $c_cyan_d #2aa198
-set $c_white_l #fdf6e3
+set $c_white_d #eee8d5
+set $c_yellow_l #657b83
+set $c_blue_d #268bd2
+set $c_foreground #839496
+set $c_magenta_d #d33682
 set $c_green_l #586e75
 set $c_yellow_d #b58900
-set $c_blue_d #268bd2
-set $c_cyan_l #93a1a1
-set $c_yellow_l #657b83
-set $c_black_d #073642
+set $c_cyan_d #2aa198
+set $c_red_d #dc322f
+set $c_red_l #cb4b16
+set $c_cursor #586e75
 set $c_black_l #002b36
-set $c_magenta_d #d33682
+set $c_cyan_l #93a1a1
+set $c_background #002b36
+set $c_blue_l #839496
+set $c_white_l #fdf6e3
 # --- APPLY XRES END
 
 #class                  background?   border        text          split
@@ -182,7 +182,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec terminator
 
 # Start dmenu (a program launcher)
 bindsym $mod+d exec ~/bin/myrofi

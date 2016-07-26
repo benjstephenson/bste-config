@@ -1,4 +1,6 @@
 #!/usr/bin/bash
 
-xrandr --dpi 192
-xrdb -merge ~/.Xresources
+if [[ $(hostname) = "bennix" ]]; then
+	xrandr --dpi 192
+	xrdb -merge ~/.Xresources
+fi

@@ -16,9 +16,9 @@
         # the acronym stands for "subtree add"
         sba = "!f() { git subtree add --prefix $1 $1 master --squash; }; f"
         # the acronym stands for "subtree update"
-        sbu = "!f() { git subtree pull --prefix $1 $1 master --squash; }; f"
+        sbu = "!f() { git subtree pull --prefix $1 $1 master }; f"
         # the acronym stands for "subtree push"
-	sbp = "!f() { git subtree push --prefix $1 $1 master --squash; }; f"
+	sbp = "!f() { git subtree push --prefix $1 $1 master }; f"
 
 [default]
 	editor = nvim

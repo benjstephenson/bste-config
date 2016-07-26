@@ -1,4 +1,3 @@
-Xft.dpi: 196
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintfull
@@ -71,3 +70,9 @@ URxvt.letterSpace: -2
 !! white dark/light
 *color7:                #eee8d5
 *color15:               #fdf6e3
+
+rofi.color-enabled: true
+rofi.color-window: #002b37, #002b37, #003642
+rofi.color-normal: #002b37, #819396, #002b37, #003642, #819396
+rofi.color-active: #002b37, #008ed4, #002b37, #003642, #008ed4
+rofi.color-urgent: #002b37, #da4281, #002b37, #003642, #da4281
