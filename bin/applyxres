@@ -143,69 +143,69 @@ replace_in_file(home+"/.config/i3/lemonbar/i3_lemonbar_config", "\n".join(arr))
 
 # 4. Powerline colors
 # "white": "c_white_l",
-
-relations = {
-  "black": "c_black_d",
-  "green": "c_green_l",
-  "darkestgreen": "c_green_d",
-  "darkgreen": "c_green_d",
-  "mediumgreen": "c_green_l",
-  "brightgreen": "c_green_l",
-  "darkestcyan": "c_cyan_d",
-  "darkcyan": "c_cyan_d",
-  "mediumcyan": "c_cyan_l",
-  "brightcyan": "c_cyan_l",
-  "darkestblue": "c_blue_d",
-  "darkblue": "c_blue_d",
-  "red": "c_red_l",
-  "darkestred": "c_red_d",
-  "darkred": "c_red_d",
-  "mediumred": "c_red_l",
-  "brightred": "c_red_l",
-  "brightestred": "c_red_l",
-  "darkestpurple": "c_magenta_d",
-  "mediumpurple": "c_magenta_d",
-  "brightpurple": "c_magenta_l",
-  "darkorange": "c_red_d",
-  "mediumorange": "c_red_d",
-  "brightorange": "c_red_l",
-  "brightestorange": "c_red_l",
-  "yellow": "c_yellow_l",
-  "brightyellow": "c_yellow_l",
-  "lightyellowgreen": "c_yellow_l",
-  "gold3": "c_yellow_d",
-  "orangered": "c_red_l",
-  "steelblue": "c_black_l",
-  "darkorange": "c_yellow_d",
-  "skyblue": "c_cyan_l",
-  "khaki1": "c_white_d"
-}
-
-contrast = 12
-tint_lookup = {
-  "dark": -3 * contrast,
-  "darkest": -5 * contrast,
-  "bright": 2 * contrast,
-  "brightest": 5 * contrast,
-  "medium": -1 * contrast,
-}
-
-f = open(home+"/.config/powerline/colors.json.default", "r")
-src = json.load(f)
-f.close()
-
-plcolors = src['colors']
-for k in plcolors:
-  if k in relations:
-    for t in tint_lookup:
-      col = colors[relations[k]]
-      if k.find(t) > -1:
-        col = hex_lighten(col, tint_lookup[t])
-      src['colors'][k] = int(BestMatch(col))
-
-f = open(home+"/.config/powerline/colors.json", "w")
-json.dump(src,f,indent=2)
-f.close()
+#
+#relations = {
+#  "black": "c_black_d",
+#  "green": "c_green_l",
+#  "darkestgreen": "c_green_d",
+#  "darkgreen": "c_green_d",
+#  "mediumgreen": "c_green_l",
+#  "brightgreen": "c_green_l",
+#  "darkestcyan": "c_cyan_d",
+#  "darkcyan": "c_cyan_d",
+#  "mediumcyan": "c_cyan_l",
+#  "brightcyan": "c_cyan_l",
+#  "darkestblue": "c_blue_d",
+#  "darkblue": "c_blue_d",
+#  "red": "c_red_l",
+#  "darkestred": "c_red_d",
+#  "darkred": "c_red_d",
+#  "mediumred": "c_red_l",
+#  "brightred": "c_red_l",
+#  "brightestred": "c_red_l",
+#  "darkestpurple": "c_magenta_d",
+#  "mediumpurple": "c_magenta_d",
+#  "brightpurple": "c_magenta_l",
+#  "darkorange": "c_red_d",
+#  "mediumorange": "c_red_d",
+#  "brightorange": "c_red_l",
+#  "brightestorange": "c_red_l",
+#  "yellow": "c_yellow_l",
+#  "brightyellow": "c_yellow_l",
+#  "lightyellowgreen": "c_yellow_l",
+#  "gold3": "c_yellow_d",
+#  "orangered": "c_red_l",
+#  "steelblue": "c_black_l",
+#  "darkorange": "c_yellow_d",
+#  "skyblue": "c_cyan_l",
+#  "khaki1": "c_white_d"
+#}
+#
+#contrast = 12
+#tint_lookup = {
+#  "dark": -3 * contrast,
+#  "darkest": -5 * contrast,
+#  "bright": 2 * contrast,
+#  "brightest": 5 * contrast,
+#  "medium": -1 * contrast,
+#}
+#
+#f = open(home+"/.config/powerline/colors.json.default", "r")
+#src = json.load(f)
+#f.close()
+#
+#plcolors = src['colors']
+#for k in plcolors:
+#  if k in relations:
+#    for t in tint_lookup:
+#      col = colors[relations[k]]
+#      if k.find(t) > -1:
+#        col = hex_lighten(col, tint_lookup[t])
+#      src['colors'][k] = int(BestMatch(col))
+#
+#f = open(home+"/.config/powerline/colors.json", "w")
+#json.dump(src,f,indent=2)
+#f.close()
 
 # 5. rofi script
 
