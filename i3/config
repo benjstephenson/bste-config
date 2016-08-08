@@ -14,9 +14,9 @@
 # Special mod key
 set $mod Mod4
 
-exec compton -b --config ~/.config/compton/compton
+#exec compton -b --config ~/.config/compton/compton
 
-exec ~/.screenlayout/workMonitors.sh
+#exec ~/.screenlayout/workMonitors.sh
 exec ~/bin/setHidpi.sh
 
 #exec /usr/lib/python3.5/site-packages/powerline/bindings/lemonbar/powerline-lemonbar.py --i3 --height=24 --bar-command=lemonbar
@@ -203,6 +203,9 @@ bindsym XF86AudioPrev exec ~/bin/spotifyController.sh "prev"
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +1% && pkill -RTMIN+1 i3blocks  #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -1% && pkill -RTMIN+1 i3blocks #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle && pkill -RTMIN+1 i3blocks # mute sound
+
+bindsym XF86MonBrightnessUp exec ~/bin/elevated/brightnessControl.sh inc
+bindsym XF86MonBrightnessDown exec ~/bin/elevated/brightnessControl.sh dec
 
 # Logout, reboot, shutdown
 #set $Locker i3lock -i ~/Pictures/tardis_van_gogh.png && sleep 1
