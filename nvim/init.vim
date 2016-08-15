@@ -33,15 +33,16 @@ set rtp+=~/Repos/Vundle.vim
 call vundle#begin("/home/bste/.config/nvim/bundle")
 
 Plugin 'airblade/vim-gitgutter'
-Plugin 'altercation/vim-colors-solarized.git'
+"Plugin 'altercation/vim-colors-solarized.git'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'drn/zoomwin-vim'
+Plugin 'ensime/ensime-vim'
 Plugin 'ervandew/supertab'
 Plugin 'gmarik/vundle'
 Plugin 'godlygeek/tabular'
 Plugin 'honza/vim-snippets'
-Plugin 'jnurmine/Zenburn'
+"Plugin 'jnurmine/Zenburn'
 Plugin 'L9'
 "Plugin 'Lokaltog/vim-powerline'
 Plugin 'majutsushi/tagbar'
@@ -55,13 +56,12 @@ Plugin 'scrooloose/syntastic'
 Plugin 'SirVer/ultisnips'
 Plugin 'euclio/vim-markdown-composer'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'Valloric/MatchTagAlways'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/FuzzyFinder'
 Plugin 'wincent/command-t'
-Plugin 'dag/vim-fish'
+"Plugin 'dag/vim-fish'
 call vundle#end()
 
 "=================================================================
@@ -103,9 +103,6 @@ let g:netrw_winsize=25     "Split window size to 25% of viewport
 set path+=$HOME/.vim/plugin/*
 set path+=$PWD/**
 
-" PowerBar is better
-"set statusline=\[FILE=%F%m%R\]\ \[TYPE=%Y\]\ \[POS=ln%l\ col%c\ %P\]\ \[LINES=%L\]
-let g:Powerline_colorscheme="solarized16"
 
 
 " Auto remove trailing whitespace on file save
@@ -138,7 +135,7 @@ let g:mta_filetypes = {
     \ 'xml'   : 1,
     \ 'jinja' : 1,
 		\ 'js'    : 1,
-		\ 'groovy'    : 1,
+		\ 'groovy' : 1,
     \}
 
 
@@ -158,7 +155,7 @@ set wildignore+=*.class,target/**
 " Indent Guide
 " manually set colours for solarized to avoid awful beige colour for odd
 " columns
-let g:indent_guides_auto_colors = 0
+let g:indent_guides_auto_colors = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 2
 let g:indent_guides_enable_on_vim_startup = 1
@@ -167,9 +164,9 @@ let g:indent_guides_enable_on_vim_startup = 1
 "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=8 ctermfg=12
 
 " Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -178,30 +175,32 @@ let g:syntastic_check_on_wq = 0
 
 
 " Airline
+let g:airline_theme="jellybeans"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1 "show tab number in tabbar
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline_powerline_fonts = 1
-"let g:airline_left_sep='❯'
-"let g:airline_right_sep='❮'
+let g:airline_skip_empty_sections = 1
 
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
-endif
 
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
+	" unicode symbols
+	"let g:airline_left_sep = '»'
+	"let g:airline_left_sep = '▶'
+	"let g:airline_left_sep='❯'
+	"let g:airline_right_sep='❮'
+	"let g:airline_right_sep = '«'
+	"let g:airline_right_sep = '◀'
+	let g:airline_symbols.linenr = '␊'
+	let g:airline_symbols.linenr = '␤'
+	let g:airline_symbols.linenr = '¶'
+	let g:airline_symbols.branch = '⎇'
+	let g:airline_symbols.paste = 'ρ'
+	let g:airline_symbols.paste = 'Þ'
+	let g:airline_symbols.paste = '∥'
+	let g:airline_symbols.whitespace = 'Ξ'
+endif
 "==================================================================
 "Fold Setup
 "==================================================================
