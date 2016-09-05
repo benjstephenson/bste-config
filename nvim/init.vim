@@ -56,7 +56,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'SirVer/ultisnips'
 Plugin 'euclio/vim-markdown-composer'
 Plugin 'tpope/vim-fugitive'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/FuzzyFinder'
@@ -126,7 +126,7 @@ let g:SrcExpl_pluginList = [
 	\ "__Tagbar__"
 \ ]
 
-au FileType * call tagbar#autoopen(0)
+"au FileType * call tagbar#autoopen(0)
 
 " Match Tag Alwas
 let g:mta_filetypes = {
