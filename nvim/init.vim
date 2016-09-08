@@ -33,35 +33,27 @@ set rtp+=~/Repos/Vundle.vim
 call vundle#begin("/home/bste/.config/nvim/bundle")
 
 Plugin 'airblade/vim-gitgutter'
-"Plugin 'altercation/vim-colors-solarized.git'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'drn/zoomwin-vim'
 Plugin 'ensime/ensime-vim'
-Plugin 'ervandew/supertab'
 Plugin 'gmarik/vundle'
 Plugin 'godlygeek/tabular'
 Plugin 'honza/vim-snippets'
-"Plugin 'jnurmine/Zenburn'
 Plugin 'L9'
-"Plugin 'Lokaltog/vim-powerline'
 Plugin 'majutsushi/tagbar'
-Plugin 'myusuf3/numbers.vim'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'oblitum/rainbow'
-"Plugin 'pearofducks/solarized-powerlines'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'SirVer/ultisnips'
-Plugin 'euclio/vim-markdown-composer'
 Plugin 'tpope/vim-fugitive'
-"Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/FuzzyFinder'
 Plugin 'wincent/command-t'
-"Plugin 'dag/vim-fish'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()
 
 "=================================================================
@@ -184,14 +176,6 @@ let g:airline_skip_empty_sections = 1
 
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
-
-	" unicode symbols
-	"let g:airline_left_sep = '»'
-	"let g:airline_left_sep = '▶'
-	"let g:airline_left_sep='❯'
-	"let g:airline_right_sep='❮'
-	"let g:airline_right_sep = '«'
-	"let g:airline_right_sep = '◀'
 	let g:airline_symbols.linenr = '␊'
 	let g:airline_symbols.linenr = '␤'
 	let g:airline_symbols.linenr = '¶'
