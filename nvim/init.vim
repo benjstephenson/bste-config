@@ -54,6 +54,8 @@ Plugin 'vim-scripts/FuzzyFinder'
 Plugin 'wincent/command-t'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-scripts/Zenburn'
 call vundle#end()
 
 "=================================================================
@@ -167,6 +169,7 @@ let g:syntastic_check_on_wq = 0
 
 
 " Airline
+let g:airline#extensions#eclim#enabled = 1
 let g:airline_theme="jellybeans"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1 "show tab number in tabbar

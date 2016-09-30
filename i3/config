@@ -14,12 +14,11 @@
 # Special mod key
 set $mod Mod4
 
-#exec compton -b --config ~/.config/compton/compton
+exec compton -b
+#--config ~/.config/compton/compton
 
-#exec ~/.screenlayout/workMonitors.sh
 exec ~/bin/setHidpi.sh
-
-#exec /usr/lib/python3.5/site-packages/powerline/bindings/lemonbar/powerline-lemonbar.py --i3 --height=24 --bar-command=lemonbar
+exec ~/bin/extendWorkMonitor.sh
 
 # Workspaces
 set $ws1 1 sh
@@ -60,8 +59,8 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Window assignments
-assign [class="chromium"] $ws1
-assign [class="Firefox"] $ws1
+assign [class="chromium"] $ws2
+assign [class="Firefox"] $ws2
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -102,11 +101,17 @@ set $c_magenta_d #d33682
 # --- APPLY XRES END
 
 #class                  background?   border        text          split
-client.focused          $c_white_d    $c_white_d    $c_black_l    $c_white_d
-client.focused_inactive $c_black_d    $c_background    $c_black_l    $c_black_d
-client.unfocused        $c_black_d    $c_background    $c_black_l    $c_black_d
-client.urgent           $c_magenta_l  $c_magenta_l  $c_black_l    $c_magenta_l
-client.background       $c_background
+#client.focused          $c_white_d    $c_white_d    $c_black_l    $c_white_d
+#client.focused_inactive $c_black_d    $c_background    $c_black_l    $c_black_d
+#client.unfocused        $c_black_d    $c_background    $c_black_l    $c_black_d
+#client.urgent           $c_magenta_l  $c_magenta_l  $c_black_l    $c_magenta_l
+#client.background       $c_background
+
+#Jellybeans theme
+client.focused #457ee0 #345fa8 #deebfe #8fbfdc
+client.focused_inactive #444444 #333333 #c7c7c7 #333333
+client.unfocused #444444 #333333 #777777 #333333
+client.urgent #c02a2a #902020 #ffffff #902020
 
 
 # windows pop-ups
@@ -186,8 +191,6 @@ bindsym $mod+Return exec terminator
 
 # Start dmenu (a program launcher)
 bindsym $mod+d exec ~/bin/myrofi
-#bindsym $mod+d exec j4-dmenu-desktop
-#bindsym $mod+d exec rofi
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
@@ -204,8 +207,10 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +1% &&
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -1% && pkill -RTMIN+1 i3blocks #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle && pkill -RTMIN+1 i3blocks # mute sound
 
-bindsym XF86MonBrightnessUp exec ~/bin/elevated/brightnessControl.sh inc
-bindsym XF86MonBrightnessDown exec ~/bin/elevated/brightnessControl.sh dec
+#bindsym XF86MonBrightnessUp exec ~/bin/elevated/brightnessControl.sh inc
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+#bindsym XF86MonBrightnessDown exec ~/bin/elevated/brightnessControl.sh dec
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 # Logout, reboot, shutdown
 #set $Locker i3lock -i ~/Pictures/tardis_van_gogh.png && sleep 1
@@ -228,38 +233,27 @@ mode "$mode_system" {
 bindsym $mod+Control+l mode "$mode_system"
 
 # status bar
-#bar {
-#  position top
-#  status_command i3status -c ~/.config/i3/i3status.conf | ~/.config/i3/scripts/i3status-wrapper.py
-#  #i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh
-#  # status_command i3status -c ~/.i3/i3status.conf
-#  # status_command py3status -c ~/.i3/i3status.conf
-#  # status_command ~/.i3/conky.sh
-#  workspace_buttons yes
-#  colors {
-#    background #073642
-#    statusline #839496
-#    separator #b58900
-#    # class border backgrd text
-#    focused_workspace #cb4b16 #cb4b16 #ffffff
-#    active_workspace  #cb4b16 #cb4b16 #ffffff
-#    inactive_workspace #252525 #252525 #6b6b6b
-#    urgent_workspace #252525 #252525 #c7a551
-#  }
-#}
-
 bar {
-#	status_command $HOME/.config/i3/scripts/i3-conky.sh
-#  i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh
+  position top
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	position top
-	workspace_buttons yes
+  workspace_buttons yes
+	colors {
+		background #000000
+		statusline #ffffff
+		separator #777777
+		focused_workspace #457ee0 #345fa8 #deebfe
+		active_workspace #444444 #333333 #c7c7c7
+		inactive_workspace #444444 #333333 #777777
+		urgent_workspace #c02a2a #902020 #ffffff
+
+  }
 }
 
 # Autostarts
 exec --no-startup-id unclutter -idle 2
 #exec --no-startup-id dunst -config ~/.config/i3/dunstrc
-exec --no-startup-id feh --bg-scale ~/Pictures/cartoonConsole.jpg
+#exec --no-startup-id feh --bg-scale ~/Pictures/cartoonConsole.jpg
+exec ~/bin/setBackground.sh
 exec --no-startup-id devmon
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
