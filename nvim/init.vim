@@ -30,32 +30,30 @@ endif
 set nocompatible
 filetype off
 set rtp+=~/Repos/Vundle.vim
-call vundle#begin("/home/bste/.config/nvim/bundle")
+call vundle#begin("~/.vim/bundle")
 
+Plugin 'L9'
+Plugin 'SirVer/ultisnips'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'drn/zoomwin-vim'
-Plugin 'ensime/ensime-vim'
+"Plugin 'ensime/ensime-vim'
 Plugin 'gmarik/vundle'
 Plugin 'godlygeek/tabular'
 Plugin 'honza/vim-snippets'
-Plugin 'L9'
 Plugin 'majutsushi/tagbar'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'oblitum/rainbow'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-Plugin 'SirVer/ultisnips'
 Plugin 'tpope/vim-fugitive'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/FuzzyFinder'
 Plugin 'wincent/command-t'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'vim-scripts/Zenburn'
 call vundle#end()
 
 "=================================================================
@@ -149,13 +147,13 @@ set wildignore+=*.class,target/**
 " Indent Guide
 " manually set colours for solarized to avoid awful beige colour for odd
 " columns
-let g:indent_guides_auto_colors = 1
+let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 2
 let g:indent_guides_enable_on_vim_startup = 1
 
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black ctermfg=red
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=8 ctermfg=12
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=blue ctermfg=red
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=magenta ctermfg=green
 
 " Syntastic
 "set statusline+=%#warningmsg#
@@ -188,6 +186,13 @@ if !exists('g:airline_symbols')
 	let g:airline_symbols.paste = '∥'
 	let g:airline_symbols.whitespace = 'Ξ'
 endif
+"=================================================================
+" Ensime
+"=================================================================
+au FileType scala noremap <leader>p :EnType<CR>
+au FileType scala noremap <leader>df :EnDeclerationSplit<CR>
+
+
 "==================================================================
 "Fold Setup
 "==================================================================
